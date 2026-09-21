@@ -1,1 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090b">
+  <title>Becky 🖤</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #241329 0%, #0d0b0f 42%, #050506 100%);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 18px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      background: linear-gradient(135deg, #151515, #48234f);
+      border: 2px solid #8d5a9c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      box-shadow: 0 0 35px rgba(150, 80, 170, .18);
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+      letter-spacing: -.5px;
+    }
+
+    .handle {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .headline {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      color: #c7c7c7;
+      line-height: 1.5;
+      font-size: 16px;
+      margin: 0 auto 30px;
+      max-width: 330px;
+    }
+
+    .age-box {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 20px;
+      padding: 22px 18px;
+    }
+
+    .age-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .age-copy {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+
+    button, .fanvue-button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .continue {
+      background: #fff;
+      color: #080808;
+      margin-bottom: 10px;
+    }
+
+    .leave {
+      background: transparent;
+      color: #888;
+    }
+
+    #destination {
+      display: none;
+    }
+
+    .fanvue-button {
+      display: block;
+      text-decoration: none;
+      background: #fff;
+      color: #080808;
+      margin-top: 18px;
+    }
+
+    .small {
+      margin-top: 18px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .ai-note {
+      margin-top: 28px;
+      color: #777;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+
+    <div class="avatar">🖤</div>
+
+    <h1>BECKY 🖤</h1>
+    <div class="handle">@snowbeckyy</div>
+
+    <div class="headline">
+      you actually found it lol
+    </div>
+
+    <div class="subtext">
+      the side of me i don't really post on ig 🙃
+    </div>
+
+    <section id="ageGate" class="age-box">
+
+      <div class="age-title">
+        18+ only
+      </div>
+
+      <div class="age-copy">
+        This page links to content intended for adults.
+        Please confirm that you are 18 or older.
+      </div>
+
+      <button class="continue" onclick="confirmAge()">
+        i'm 18+ — continue
+      </button>
+
+      <button class="leave" onclick="leavePage()">
+        go back
+      </button>
+
+    </section>
+
+    <section id="destination" class="age-box">
+
+      <div class="age-title">
+        okayyy hi 🖤
+      </div>
+
+      <div class="age-copy">
+        you made it this far... might as well come say hi 🙃
+      </div>
+
+      <a
+        class="fanvue-button"
+        href="https://www.fanvue.com/snow-beckkkyy-738"
+        rel="noopener noreferrer"
+      >
+        more of me + come talk 🖤
+      </a>
+
+      <div class="small">
+        18+ only
+      </div>
+
+    </section>
+
+    <div class="ai-note">
+      Becky is a virtual / AI-created character.
+    </div>
+
+  </main>
+
+  <script>
+    function confirmAge() {
+      document.getElementById("ageGate").style.display = "none";
+      document.getElementById("destination").style.display = "block";
+    }
+
+    function leavePage() {
+      if (document.referrer) {
+        history.back();
+      } else {
+        window.location.href = "https://www.instagram.com/snowbeckyy/";
+      }
+    }
+  </script>
+
+</body>
+</html>
