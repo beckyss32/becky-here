@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8H95B0KZ8Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  gtag('config', 'G-8H95B0KZ8Z');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H95B0KZ8Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-8H95B0KZ8Z");
+  </script>
 
   <style>
     * {
@@ -85,7 +87,6 @@
       z-index: 1;
     }
 
-    /* Becky profile image */
     .avatar {
       width: 112px;
       height: 112px;
@@ -133,7 +134,6 @@
       max-width: 330px;
     }
 
-    /* Glass age gate */
     .age-box {
       background: rgba(15, 11, 17, 0.66);
       border: 1px solid rgba(255,255,255,0.13);
@@ -260,6 +260,7 @@
       the side of me i don't really post on ig 🙃
     </div>
 
+    <!-- AGE GATE -->
     <section id="ageGate" class="age-box">
 
       <div class="age-title">
@@ -271,16 +272,25 @@
         Please confirm that you are 18 or older.
       </div>
 
-      <button class="continue" onclick="confirmAge()">
+      <button
+        type="button"
+        class="continue"
+        onclick="confirmAge()"
+      >
         i'm 18+ — continue
       </button>
 
-      <button class="leave" onclick="leavePage()">
+      <button
+        type="button"
+        class="leave"
+        onclick="leavePage()"
+      >
         go back
       </button>
 
     </section>
 
+    <!-- FANVUE DESTINATION -->
     <section id="destination" class="age-box">
 
       <div class="age-title">
@@ -292,14 +302,12 @@
       </div>
 
       <a
-        <a
-  id="fanvueButton"
-  class="fanvue-button"
-  href="https://www.fanvue.com/snow-beckkkyy-738?free_trial=f8152a20-a0c4-4159-a863-33a38fbc3678"
-  rel="noopener noreferrer"
->
-  start my free trial 🖤
-</a>
+        id="fanvueButton"
+        class="fanvue-button"
+        href="https://www.fanvue.com/snow-beckkkyy-738?free_trial=f8152a20-a0c4-4159-a863-33a38fbc3678"
+        rel="noopener noreferrer"
+      >
+        start my free trial 🖤
       </a>
 
       <div class="small">
@@ -311,49 +319,101 @@
   </main>
 
   <script>
-    <script>
-  // Read where the visitor came from:
-  // ?src=ig_highlight, ?src=ig_story, ?src=ig_dm, etc.
-  const params = new URLSearchParams(window.location.search);
-  const trafficSource = params.get("src") || "unknown";
+    /*
+      TRAFFIC SOURCE
 
-  // Track arrival on the Becky bridge
-  gtag("event", "bridge_view", {
-    traffic_source: trafficSource
-  });
+      Examples:
+      ?src=ig_highlight
+      ?src=ig_story
+      ?src=ig_dm
+      ?src=threads
+      ?src=test
+    */
 
-  // User confirms they are 18+
-  function confirmAge() {
-    gtag("event", "age_confirm", {
-      traffic_source: trafficSource
-    });
+    const params = new URLSearchParams(window.location.search);
+    const trafficSource = params.get("src") || "unknown";
 
-    document.getElementById("ageGate").style.display = "none";
-    document.getElementById("destination").style.display = "block";
-  }
 
-  // User leaves the age gate
-  function leavePage() {
-    gtag("event", "age_gate_exit", {
-      traffic_source: trafficSource
-    });
+    /*
+      SAFE ANALYTICS
 
-    if (document.referrer) {
-      history.back();
-    } else {
-      window.location.href = "https://www.instagram.com/snowbeckyy/";
+      If Google Analytics ever fails to load,
+      the Becky bridge itself will still work.
+    */
+
+    function trackEvent(eventName) {
+      try {
+        if (typeof gtag === "function") {
+          gtag("event", eventName, {
+            traffic_source: trafficSource
+          });
+        }
+      } catch (error) {
+        console.log("Analytics tracking error:", error);
+      }
     }
-  }
 
-  // User clicks through to Fanvue
-  document
-    .getElementById("fanvueButton")
-    .addEventListener("click", function () {
-      gtag("event", "fanvue_click", {
-        traffic_source: trafficSource
-      });
+
+    /*
+      TRACK BRIDGE ARRIVAL
+    */
+
+    trackEvent("bridge_view");
+
+
+    /*
+      AGE CONFIRMATION
+    */
+
+    function confirmAge() {
+
+      // Make the page work FIRST
+      document.getElementById("ageGate").style.display = "none";
+      document.getElementById("destination").style.display = "block";
+
+      // Then track the event
+      trackEvent("age_confirm");
+    }
+
+
+    /*
+      AGE GATE EXIT
+    */
+
+    function leavePage() {
+
+      trackEvent("age_gate_exit");
+
+      if (document.referrer) {
+        history.back();
+      } else {
+        window.location.href =
+          "https://www.instagram.com/snowbeckyy/";
+      }
+    }
+
+
+    /*
+      FANVUE CLICK
+    */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const fanvueButton =
+        document.getElementById("fanvueButton");
+
+      if (fanvueButton) {
+
+        fanvueButton.addEventListener(
+          "click",
+          function () {
+
+            trackEvent("fanvue_click");
+
+          }
+        );
+      }
     });
-</script>
   </script>
 
 </body>
