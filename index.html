@@ -292,11 +292,14 @@
       </div>
 
       <a
-        class="fanvue-button"
-        href="https://www.fanvue.com/snow-beckkkyy-738?free_trial=f8152a20-a0c4-4159-a863-33a38fbc3678"
-        rel="noopener noreferrer"
-      >
-       start my free trial 🖤
+        <a
+  id="fanvueButton"
+  class="fanvue-button"
+  href="https://www.fanvue.com/snow-beckkkyy-738?free_trial=f8152a20-a0c4-4159-a863-33a38fbc3678"
+  rel="noopener noreferrer"
+>
+  start my free trial 🖤
+</a>
       </a>
 
       <div class="small">
@@ -308,18 +311,49 @@
   </main>
 
   <script>
-    function confirmAge() {
-      document.getElementById("ageGate").style.display = "none";
-      document.getElementById("destination").style.display = "block";
-    }
+    <script>
+  // Read where the visitor came from:
+  // ?src=ig_highlight, ?src=ig_story, ?src=ig_dm, etc.
+  const params = new URLSearchParams(window.location.search);
+  const trafficSource = params.get("src") || "unknown";
 
-    function leavePage() {
-      if (document.referrer) {
-        history.back();
-      } else {
-        window.location.href = "https://www.instagram.com/snowbeckyy/";
-      }
+  // Track arrival on the Becky bridge
+  gtag("event", "bridge_view", {
+    traffic_source: trafficSource
+  });
+
+  // User confirms they are 18+
+  function confirmAge() {
+    gtag("event", "age_confirm", {
+      traffic_source: trafficSource
+    });
+
+    document.getElementById("ageGate").style.display = "none";
+    document.getElementById("destination").style.display = "block";
+  }
+
+  // User leaves the age gate
+  function leavePage() {
+    gtag("event", "age_gate_exit", {
+      traffic_source: trafficSource
+    });
+
+    if (document.referrer) {
+      history.back();
+    } else {
+      window.location.href = "https://www.instagram.com/snowbeckyy/";
     }
+  }
+
+  // User clicks through to Fanvue
+  document
+    .getElementById("fanvueButton")
+    .addEventListener("click", function () {
+      gtag("event", "fanvue_click", {
+        traffic_source: trafficSource
+      });
+    });
+</script>
   </script>
 
 </body>
