@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>Becky 🖤</title>
 
@@ -51,469 +51,138 @@
   </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      min-height: 100dvh;
-      background: #09080a;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      display: flex;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .page {
-      width: 100%;
-      max-width: 430px;
-      min-height: 100vh;
-      min-height: 100dvh;
-      background: #0b090c;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 460px;
-      overflow: hidden;
-      background: #151117;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.03) 0%,
-          rgba(0,0,0,0.08) 45%,
-          rgba(11,9,12,0.90) 88%,
-          #0b090c 100%
-        );
-    }
-
-    .identity {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 26px;
-      z-index: 2;
-      text-align: center;
-      padding: 0 22px;
-    }
-
-    .name {
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: -0.8px;
-      margin-bottom: 6px;
-    }
-
-    .meta {
-      font-size: 17px;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 6px;
-    }
-
-    .handle {
-      font-size: 14px;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .content {
-      padding: 10px 20px 34px;
-      text-align: center;
-    }
-
-    .headline {
-      font-size: 24px;
-      line-height: 1.2;
-      font-weight: 750;
-      letter-spacing: -0.4px;
-      margin-top: 4px;
-      margin-bottom: 10px;
-    }
-
-    .subtext {
-      color: rgba(255,255,255,0.70);
-      font-size: 16px;
-      line-height: 1.45;
-      max-width: 330px;
-      margin: 0 auto 24px;
-    }
-
-    button,
-    .fanvue-button {
-      width: 100%;
-      border: 0;
-      border-radius: 16px;
-      padding: 17px 18px;
-      font-family: inherit;
-      font-size: 17px;
-      font-weight: 750;
-      cursor: pointer;
-    }
-
-    .primary {
-      background: #ffffff;
-      color: #090909;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.22);
-    }
-
-    .primary:active,
-    .fanvue-button:active {
-      transform: scale(0.985);
-    }
-
-    .tiny {
-      margin-top: 13px;
-      color: rgba(255,255,255,0.34);
-      font-size: 12px;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      background: rgba(0,0,0,0.72);
-      backdrop-filter: blur(9px);
-      -webkit-backdrop-filter: blur(9px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 390px;
-      background: rgba(22,18,24,0.97);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 24px;
-      padding: 28px 20px 20px;
-
-      box-shadow:
-        0 24px 60px rgba(0,0,0,0.52),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-
-      text-align: center;
-    }
-
-    .modal-big {
-      font-size: 42px;
-      line-height: 1;
-      margin-bottom: 12px;
-      font-weight: 800;
-    }
-
-    .modal-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .modal-copy {
-      color: rgba(255,255,255,0.68);
-      line-height: 1.5;
-      font-size: 15px;
-      margin-bottom: 22px;
-    }
-
-    .continue {
-      background: #fff;
-      color: #090909;
-      margin-bottom: 10px;
-    }
-
-    .leave {
-      background: transparent;
-      color: rgba(255,255,255,0.46);
-    }
-
-    /* Destination */
-    #destination {
-      display: none;
-      padding-top: 4px;
-    }
-
-    .destination-box {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 22px 18px;
-      margin-top: 6px;
-    }
-
-    .destination-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .destination-copy {
-      color: rgba(255,255,255,0.68);
-      line-height: 1.45;
-      font-size: 15px;
-      margin-bottom: 18px;
-    }
-
-    .fanvue-button {
-      display: block;
-      text-decoration: none;
-      background: #fff;
-      color: #090909;
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        height: 440px;
-      }
-
-      .name {
-        font-size: 32px;
-      }
-
-      .headline {
-        font-size: 23px;
-      }
-    }
+    :root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #07060a; color: #fff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 280px; }
+    button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    button:focus-visible { outline: 3px solid #dfb9ff; outline-offset: 5px; }
+    .page { position: relative; isolation: isolate; width: 100%; max-width: 480px; min-height: 100svh; margin: auto; padding-bottom: max(32px, env(safe-area-inset-bottom)); overflow: hidden; background: #09070d; }
+    .page::before { content: ""; position: absolute; z-index: -1; inset: 45% 0 0; pointer-events: none; background: radial-gradient(ellipse at 50% 65%, #36174355, transparent 65%), radial-gradient(circle at 12% 23%, #d8a2f7 0 1px, transparent 2px), radial-gradient(circle at 86% 38%, #a96bd2 0 1px, transparent 2px), radial-gradient(circle at 24% 92%, #ca96eb 0 1px, transparent 2px), radial-gradient(circle at 81% 96%, #ce9aec 0 1px, transparent 2px); }
+    .hero { position: relative; margin: 0; aspect-ratio: 1 / 1.12; overflow: hidden; }
+    .hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, #09070d55 76%, #09070d 100%); }
+    .identity { position: relative; margin-top: -38px; text-align: center; padding: 0 20px; }
+    h1 { margin: 0 0 6px; font-size: clamp(32px, 9vw, 42px); line-height: 1.1; letter-spacing: -1.3px; font-weight: 800; }
+    .meta { margin: 0; color: #f0eaf5; font-size: 17px; line-height: 1.6; }
+    .handle { margin: 1px 0 15px; font-size: 16px; color: #a9a1b0; }
+    .status { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #9862b4; border-radius: 999px; background: #ffffff08; padding: 8px 15px; font-size: 14px; line-height: 1; box-shadow: inset 0 0 0 1px #ffffff05; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #38ce49; }
+    .card-wrap { margin: 22px 18px 0; }
+    .teaser { position: relative; display: block; width: 100%; aspect-ratio: 1.9; padding: 0; overflow: hidden; text-align: left; color: white; border: 1px solid #b378d1; border-radius: 22px; background: #201526; box-shadow: 0 8px 35px #9c44c326; }
+    .teaser img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 48% center; transition: transform .2s ease; }
+    .teaser::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, #100815b8 100%); }
+    .card-label { position: absolute; z-index: 1; left: 17px; right: 65px; bottom: 20px; font-size: clamp(21px, 6vw, 28px); line-height: 1.1; font-weight: 750; letter-spacing: -.5px; text-shadow: 0 2px 12px #0008; }
+    .arrow { position: absolute; z-index: 1; bottom: 15px; right: 14px; width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid #d8acec; border-radius: 50%; background: #36233b99; backdrop-filter: blur(5px); }
+    .arrow svg { width: 23px; height: 23px; }
+    .footnote { margin: 17px 0 0; text-align: center; color: #81728c; font-size: 11px; letter-spacing: .4px; }
+    dialog { width: calc(100% - 36px); max-width: 380px; padding: 30px 24px 22px; border: 1px solid #76528e; border-radius: 24px; background: #17101f; color: white; text-align: center; box-shadow: 0 24px 90px #0009; }
+    dialog::backdrop { background: #030105cc; backdrop-filter: blur(8px); }
+    dialog h2 { margin: 0 0 14px; font-size: 30px; letter-spacing: -.5px; }
+    dialog p { margin: 0 0 24px; color: #c6bccc; font-size: 15px; line-height: 1.6; }
+    .modal-button { display: block; width: 100%; min-height: 49px; border: 0; border-radius: 13px; font-weight: 700; }
+    .continue { color: #140d19; background: #f5edfb; }
+    .cancel { margin-top: 8px; color: #c1afcc; background: transparent; }
+    .modal-button:disabled { opacity: .65; cursor: wait; }
+    body.modal-open { overflow: hidden; }
+    @media (hover: hover) { .teaser:hover img { transform: scale(1.025); } }
+    @media (prefers-reduced-motion: reduce) { .teaser img { transition: none; } }
+    @media (min-width: 600px) { .page { margin: 24px auto; min-height: auto; border-radius: 26px; box-shadow: 0 20px 100px #30133c33; } }
   </style>
 </head>
-
 <body>
-
   <main class="page">
-
-    <section class="hero">
-      <img src="./red%20car%20f%20tfd.png" alt="Becky">
-
-      <div class="identity">
-        <div class="name">becky 🖤</div>
-        <div class="meta">19 | massachusetts</div>
-        <div class="handle">@snowbeckyy</div>
-      </div>
+    <figure class="hero">
+      <img src="./becky-hero-car.png" alt="Becky in a pink dress, sitting in a red car" width="598" height="926" fetchpriority="high" decoding="async">
+    </figure>
+    <section class="identity" aria-label="About Becky">
+      <h1>becky 🖤</h1>
+      <p class="meta">19 | massachusetts</p>
+      <p class="handle">@snowbeckyy</p>
+      <div class="status"><span class="status-dot" aria-hidden="true"></span>Online now</div>
     </section>
-
-    <section class="content">
-
-      <div id="intro">
-
-        <div class="headline">
-          u found me lol
-        </div>
-
-        <div class="subtext">
-          extra pics, outfits + the stuff i don’t really post on ig
-        </div>
-
-        <button
-          type="button"
-          class="primary"
-          onclick="openAgeGate()"
-        >
-          come say hi :)
-        </button>
-
-        <div class="tiny">
-          18+ only
-        </div>
-
-      </div>
-
-      <div id="destination">
-
-        <div class="destination-box">
-
-          <div class="destination-title">
-            hiiii 🖤
-          </div>
-
-          <div class="destination-copy">
-            7 days free — come talk to me over there :)
-          </div>
-
-          <a
-            id="fanvueButton"
-            class="fanvue-button"
-            href="https://www.fanvue.com/snow-beckkkyy-738?free_trial=39dcb111-9d84-4d2d-8cc5-adb07b366c96"
-            rel="noopener noreferrer"
-          >
-            start 7 days free
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- AGE GATE MODAL -->
-  <div id="ageModal" class="modal-backdrop">
-
-    <div class="modal">
-
-      <div class="modal-big">
-        18+
-      </div>
-
-      <div class="modal-title">
-        age confirmation
-      </div>
-
-      <div class="modal-copy">
-        This link leads to age-restricted content.
-        By continuing, you confirm that you are 18 years or older.
-      </div>
-
-      <button
-        type="button"
-        class="continue"
-        onclick="confirmAge()"
-      >
-        continue — i'm 18+
+    <div class="card-wrap">
+      <button class="teaser" id="teaserButton" type="button" aria-haspopup="dialog" aria-controls="ageModal" aria-label="come say hi <3">
+        <img src="./becky-teaser.jpg" alt="Becky relaxing in a warmly lit room" width="1200" height="400" decoding="async">
+        <span class="card-label">come say hi &lt;3</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </button>
-
-      <button
-        type="button"
-        class="leave"
-        onclick="leavePage()"
-      >
-        go back
-      </button>
-
+      <p class="footnote">18+ only</p>
     </div>
-
-  </div>
-
-
+  </main>
+  <dialog id="ageModal" aria-labelledby="ageTitle" aria-describedby="ageCopy">
+    <h2 id="ageTitle">18+ only</h2>
+    <p id="ageCopy">This page links to adult content. Please confirm that you are 18 or older to continue.</p>
+    <button class="modal-button continue" id="confirmButton" type="button">continue (18+)</button>
+    <button class="modal-button cancel" id="cancelButton" type="button" autofocus>cancel</button>
+  </dialog>
   <script>
-    /*
-      TRAFFIC SOURCE
-
-      Examples:
-      ?src=ig_highlight
-      ?src=ig_story
-      ?src=ig_dm
-      ?src=threads
-      ?src=test
-      ?src=youtube_ig
-    */
-
+    // Preserve the existing GA4 funnel names and arbitrary ?src= attribution.
     const params = new URLSearchParams(window.location.search);
     const trafficSource = params.get("src") || "unknown";
+    const fanvueUrl = "https://www.fanvue.com/snow-beckkkyy-738?free_trial=39dcb111-9d84-4d2d-8cc5-adb07b366c96";
+    const ageModal = document.getElementById("ageModal");
+    const confirmButton = document.getElementById("confirmButton");
+    let confirming = false;
 
-
-    /*
-      SAFE ANALYTICS
-    */
-
-    function trackEvent(eventName) {
+    function trackEvent(eventName, extra = {}) {
       try {
         if (typeof gtag === "function") {
-          gtag("event", eventName, {
-            traffic_source: trafficSource
-          });
+          gtag("event", eventName, { traffic_source: trafficSource, ...extra });
         }
-      } catch (error) {
-        console.log("Analytics tracking error:", error);
-      }
+      } catch (error) { console.log("Analytics tracking error:", error); }
     }
-
-
-    /*
-      TRACK BRIDGE ARRIVAL
-    */
 
     trackEvent("bridge_view");
 
-
-    /*
-      OPEN AGE GATE
-    */
-
     function openAgeGate() {
-      document.getElementById("ageModal").style.display = "flex";
+      if (confirming || ageModal.open) return;
+      ageModal.showModal();
+      document.body.classList.add("modal-open");
     }
 
-
-    /*
-      AGE CONFIRMATION
-    */
+    function cancelAgeGate() {
+      if (confirming) return;
+      trackEvent("age_gate_exit");
+      ageModal.close();
+    }
 
     function confirmAge() {
-
-      document.getElementById("ageModal").style.display = "none";
-      document.getElementById("intro").style.display = "none";
-      document.getElementById("destination").style.display = "block";
-
-      trackEvent("age_confirm");
+      if (confirming) return;
+      confirming = true;
+      confirmButton.disabled = true;
+      document.getElementById("cancelButton").disabled = true;
+      let redirected = false;
+      let completedEvents = 0;
+      function goToFanvue() {
+        if (redirected) return;
+        redirected = true;
+        window.location.assign(fanvueUrl);
+      }
+      function eventComplete() {
+        completedEvents += 1;
+        if (completedEvents === 2) goToFanvue();
+      }
+      // Give both events a chance to send, but never strand a visitor if GA is blocked.
+      setTimeout(goToFanvue, 1200);
+      trackEvent("age_confirm", { transport_type: "beacon", event_callback: eventComplete, event_timeout: 1000 });
+      trackEvent("fanvue_click", { transport_type: "beacon", event_callback: eventComplete, event_timeout: 1000 });
     }
 
-
-    /*
-      AGE GATE EXIT
-    */
-
-    function leavePage() {
-
-      trackEvent("age_gate_exit");
-
-      if (document.referrer) {
-        history.back();
-      } else {
-        window.location.href =
-          "https://www.instagram.com/snowbeckyy/";
-      }
-    }
-
-
-    /*
-      FANVUE CLICK
-    */
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const fanvueButton =
-        document.getElementById("fanvueButton");
-
-      if (fanvueButton) {
-
-        fanvueButton.addEventListener(
-          "click",
-          function () {
-
-            trackEvent("fanvue_click");
-
-          }
-        );
-      }
+    document.getElementById("teaserButton").addEventListener("click", openAgeGate);
+    confirmButton.addEventListener("click", confirmAge);
+    document.getElementById("cancelButton").addEventListener("click", cancelAgeGate);
+    ageModal.addEventListener("cancel", function (event) { event.preventDefault(); cancelAgeGate(); });
+    ageModal.addEventListener("close", function () {
+      document.body.classList.remove("modal-open");
+      document.getElementById("teaserButton").focus();
+    });
+    window.addEventListener("pageshow", function (event) {
+      if (!event.persisted) return;
+      confirming = false;
+      confirmButton.disabled = false;
+      document.getElementById("cancelButton").disabled = false;
+      if (ageModal.open) ageModal.close();
     });
   </script>
-
 </body>
 </html>
