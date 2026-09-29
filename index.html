@@ -12,7 +12,41 @@
     gtag("js", new Date());
     gtag("config", "G-8H95B0KZ8Z");
   </script>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const src = params.get("src");
 
+  if (src === "youtube_ig") {
+    let redirected = false;
+
+    function goToInstagram() {
+      if (redirected) return;
+      redirected = true;
+
+      window.location.replace(
+        "https://www.instagram.com/snowbeckyy/"
+      );
+    }
+
+    // Track YouTube -> Instagram in GA4
+    if (typeof gtag === "function") {
+      gtag("event", "youtube_to_instagram", {
+        becky_traffic_source: "youtube_ig",
+        source_platform: "youtube",
+        destination: "instagram",
+        transport_type: "beacon",
+        event_callback: goToInstagram
+      });
+
+      // Fallback in case GA4 callback takes too long
+      setTimeout(goToInstagram, 1200);
+    } else {
+      goToInstagram();
+    }
+  }
+})();
+</script>
   <style>
     * {
       box-sizing: border-box;
